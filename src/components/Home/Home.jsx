@@ -14,7 +14,9 @@ const Home = () =>{
         })
 
     }, [])
-    console.log(cardsData)
+
+    
+
     let unpacking = cardsData.map((el) => (<FilmCard title={el.title} id={el.id}/>))
 
     return(

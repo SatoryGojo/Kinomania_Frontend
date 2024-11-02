@@ -7,7 +7,7 @@ const Header = () =>{
             <div className={HeaderStyle.header}>
                 <NavLink to='/'>Главная</NavLink>
                 <NavLink to='/'>Актеры</NavLink>
-                <NavLink to='/'>Аккаунт</NavLink>
+                <NavLink to='auth/'>Аккаунт</NavLink>
             </div>
         </div>
     )

@@ -1,6 +1,8 @@
 import style from './AuthForm.module.css'
 import {useForm} from 'react-hook-form'
-
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { jwtCreate } from '../../slices/jwtSlice' 
 
 const AuthForm = () =>{
 
@@ -13,11 +15,24 @@ const AuthForm = () =>{
     } = useForm()
 
 
-    const pass = (data) =>{
-        
-        console.log(data)
-    }
+    const dispatch = useDispatch()
 
+
+    const pass = (data) =>{
+        // axios.post('http://127.0.0.1:8000/filmlist/auth/jwt/create/', { username: data.username, password: data.password})
+        // .then((response) => {
+
+        //     localStorage.setItem('accessToken', response.data.access)
+        //     localStorage.setItem('refreshToken', response.data.refresh)
+        // })
+
+        let username = data.username
+        let password = data.password
+
+        return dispatch(jwtCreate({username, password}))
+    }
+    
+    
     return(
         <div>
             <h1>Авторизация</h1>

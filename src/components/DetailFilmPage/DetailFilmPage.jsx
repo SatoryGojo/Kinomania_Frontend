@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 import { useParams } from "react-router-dom"
 
+
+
 const DetailFilmPage = () =>{
 
     const [filmData, setFilmData] = useState([])
@@ -10,12 +12,22 @@ const DetailFilmPage = () =>{
 
     useEffect(() =>{
 
-        axios.get(`http://127.0.0.1:8000/filmlist/${id}/`)
+        axios.get(`http://127.0.0.1:8000/filmlist/${id}/`, {
+            headers:{
+                'Authorization': `JWT ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then((response) => (
-            setFilmData(response.data[0])
+            setFilmData(response.data)
+            
         ))
 
+        .catch(error => console.log(error)
+        
+        )
     }, [])
+
+    
     return(
 
         <div>
