@@ -1,5 +1,6 @@
 import HeaderStyle from './Header.module.css'
 import { NavLink } from 'react-router-dom'
+import AccountCheck from './AccountCheck/AccountCheck'
 
 const Header = () =>{
     return (
@@ -7,7 +8,7 @@ const Header = () =>{
             <div className={HeaderStyle.header}>
                 <NavLink to='/'>Главная</NavLink>
                 <NavLink to='/'>Актеры</NavLink>
-                <NavLink to='auth/'>Аккаунт</NavLink>
+                <AccountCheck/>
             </div>
         </div>
     )

@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import DetailFilmPage from './components/DetailFilmPage/DetailFilmPage';
 import AuthForm from './components/AuthForm/AuthForm';
+import RegisterForm from './components/RegisterForm/RegisterForm';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path='/' element={<Home/>}></Route>
             <Route path='filmlist/:id' element={<DetailFilmPage/>}></Route>
             <Route path='auth/' element={<AuthForm/>}></Route>
+            <Route path='register/' element={<RegisterForm/>}></Route>
 
           </Routes>
 

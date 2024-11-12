@@ -22,7 +22,10 @@ const DetailFilmPage = () =>{
             
         ))
 
-        .catch(error => console.log(error)
+        .catch((error) => {
+            
+            console.log(error)
+        }
         
         )
     }, [])

@@ -1,8 +1,9 @@
 import style from './AuthForm.module.css'
 import {useForm} from 'react-hook-form'
+import {redirect} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { jwtCreate } from '../../slices/jwtSlice' 
+
 
 const AuthForm = () =>{
 
@@ -15,31 +16,37 @@ const AuthForm = () =>{
     } = useForm()
 
 
-    const dispatch = useDispatch()
 
 
-    const pass = (data) =>{
-        // axios.post('http://127.0.0.1:8000/filmlist/auth/jwt/create/', { username: data.username, password: data.password})
-        // .then((response) => {
-
-        //     localStorage.setItem('accessToken', response.data.access)
-        //     localStorage.setItem('refreshToken', response.data.refresh)
-        // })
-
-        let username = data.username
+    
+    const Pass =  (data) =>{
+        
+        let email = data.email
         let password = data.password
 
-        return dispatch(jwtCreate({username, password}))
+        axios.post('http://127.0.0.1:8000/filmlist/api/login/', {"email": email, "password": password})
+
+        .then((response) => {
+            console.log(response)
+            localStorage.setItem('accessToken', response.data.tokens.access)
+            localStorage.setItem('refreshToken', response.data.tokens.refresh)
+            
+        })
+
+        .catch((error) => {
+            console.log(error)
+        })
+        
     }
     
     
     return(
         <div>
             <h1>Авторизация</h1>
-            <form onSubmit={handleSubmit(pass)}>
+            <form onSubmit={handleSubmit(Pass)}>
 
-                <label>Логин
-                    <input {...register('username', { required: 'Поле обязательно'})}/>
+                <label>Email
+                    <input {...register('email', { required: 'Поле обязательно'})}/>
                 </label>
                 <div>{errors?.username && <p>{errors?.username?.message || "Error"}</p> }</div>
 
@@ -51,6 +58,8 @@ const AuthForm = () =>{
 
                 <input type='submit' />
             </form>
+
+            <NavLink to='/register/'>Регистрация</NavLink>
         </div>
     )
 }
